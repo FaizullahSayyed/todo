@@ -1,0 +1,32 @@
+GET http://localhost:3000/todos/?status=TO%20DO
+###API 1
+
+GET http://localhost:3000/todos/13
+###API 2
+
+GET http://localhost:3000/agenda/?date=2021-01-12
+###API 3
+
+POST http://localhost:3000/todos/
+Content-Type: application/json
+
+{
+    "id": 13,
+    "todo": "Clean the garden",
+    "priority": "LOW",
+    "status": "TO DO",
+    "category": "HOME",
+    "dueDate": "2021-01-12"
+  }
+###API 4
+
+PUT  http://localhost:3000/todos/2
+Content-Type: application/json
+
+{
+    "dueDate": "2021-03-09"
+}
+#### API 5
+
+DELETE  http://localhost:3000/todos/12
+### API 6
