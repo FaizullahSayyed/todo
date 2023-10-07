@@ -106,7 +106,12 @@ app.get("/todos/:todoId/", async (request, response) => {
 
 //API 3
 app.get("/agenda/", async (request, response) => {
-  if (dateHandler.isValid(dateHandler.parseISO(request.query.date))) {
+  const { date } = request.query;
+  //   const parsedDate = dateHandler.parseISO(date);
+  const formattedDate = dateHandler.format(new Date(date), "yyyy-MM-dd");
+
+  if (dateHandler.isValid(dateHandler.parseISO(date))) {
+    //   if (true) {
     response.send(
       await db.all(`
             SELECT
@@ -115,7 +120,7 @@ app.get("/agenda/", async (request, response) => {
             FROM
                 todo
             WHERE
-                due_date LIKE '%${request.query.date}%'
+                due_date = '${formattedDate}'
           `)
     );
   } else {
